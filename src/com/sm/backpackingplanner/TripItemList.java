@@ -3,10 +3,6 @@ package com.sm.backpackingplanner;
 import org.json.JSONObject;
 
 import com.sm.backpackingplannerdata.DataStoreInventory;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 import com.sm.backpackingplannerdata.Datastore;
 
 import android.app.Activity;
