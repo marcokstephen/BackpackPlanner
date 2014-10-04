@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -37,7 +38,9 @@ public class MainActivity extends Activity {
 			}
 		});
         
+        String sampleJsonArray = "";
         ListView tripListView = (ListView)findViewById(R.id.tripListView);
+        tripListView.setAdapter(new TripListAdapter(this, sampleJsonArray));
         
     }
 
@@ -98,6 +101,25 @@ public class MainActivity extends Activity {
 		public View getView(int arg0, View view, ViewGroup arg2) {
 			if (view == null){
 				view = myLayoutInflater.inflate(R.layout.trip_list_view_element, null);
+			}
+			//should be working with JSONObjects. 4 fields: id,location,date,weather
+			try {
+				JSONObject myJsonObj = myJsonArray.getJSONObject(arg0);
+				String location = myJsonObj.getString("location");
+				String date = myJsonObj.getString("date");
+				String weather = myJsonObj.getString("weater");
+				
+				TextView locationTextView = (TextView)view.findViewById(R.id.location_text_view);
+				TextView weatherTextView = (TextView)view.findViewById(R.id.weather_summary_text_view);
+				TextView dateTextView = (TextView)view.findViewById(R.id.date_text_view);
+				
+				locationTextView.setText(location);
+				weatherTextView.setText(weather);
+				dateTextView.setText(date);
+				return view;
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
 			return null;
 		}
