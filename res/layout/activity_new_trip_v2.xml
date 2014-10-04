@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
+        android:text="Location:" />
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1" />
+    
+    <LinearLayout style="?android:buttonBarStyle"
+		android:layout_width="match_parent"
+		android:id="@+id/button_bar_add_new"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true">
+		
+		<Button style="?android:buttonBarButtonStyle"
+			android:id="@+id/addTripButton"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="Create New Trip"/>
+		
+	</LinearLayout>
+
+    <Button
+        android:id="@+id/choose_date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/currentDateTextView"
+        android:layout_alignBottom="@+id/currentDateTextView"
+        android:layout_alignParentLeft="true"
+        android:onClick="DataPicker"
+        android:text="Choose Date" />
+
+    <TextView
+        android:id="@+id/currentDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/locationSpinner"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="39dp"
+        android:layout_toRightOf="@+id/choose_date_button"
+        android:text="TextView" />
+
+</RelativeLayout>

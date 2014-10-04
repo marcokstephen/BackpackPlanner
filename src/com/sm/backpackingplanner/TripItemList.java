@@ -2,10 +2,15 @@ package com.sm.backpackingplanner;
 
 import org.json.JSONObject;
 
+<<<<<<< HEAD
 
 import com.sm.backpackingplannerdata.DataStoreInventory;
 import com.sm.backpackingplannerdata.Datastore;
 
+=======
+import com.sm.backpackingplannerdata.DataStoreInventory;
+import com.sm.backpackingplannerdata.Datastore;
+>>>>>>> FETCH_HEAD
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,9 +29,9 @@ public class TripItemList extends Activity {
 		int idValue = intent.getIntExtra(MainActivity.INTENT_BUNDLE_ID, 0);
 		new DataStoreInventory(this);
 		JSONObject eventJsonObject = DataStoreInventory.getEventById(idValue);
-		
+
 		setContentView(R.layout.activity_trip_item_list);
-		TextView testOutput = (TextView)findViewById(R.id.test_output);
+		TextView testOutput = (TextView) findViewById(R.id.test_output);
 		testOutput.setText(eventJsonObject.toString());
 	}
 
