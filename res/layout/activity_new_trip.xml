@@ -12,8 +12,16 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:text="Button"
+        android:text="@string/generate_list"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>

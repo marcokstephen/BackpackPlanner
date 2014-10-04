@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="add_new_item">Add New Item</string>
     <string name="action_new_list">Create New List</string>
+    <string name="generate_list">Generate List</string>
 
 </resources>
