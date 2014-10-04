@@ -7,6 +7,9 @@
         android:id="@+id/angry_btn"
         android:layout_width="220dp"
         android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
@@ -15,13 +18,5 @@
         android:text="@string/generate_list"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
-
-    <DatePicker
-        android:id="@+id/datePicker1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="18dp" />
 
 </RelativeLayout>

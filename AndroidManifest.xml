@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewTripActivity"
+            android:label="@string/title_activity_new_trip" >
+        </activity>
+        <activity
+            android:name=".AddItemToInventory"
+            android:label="@string/title_activity_add_item_to_inventory" >
+        </activity>
     </application>
 
 </manifest>
