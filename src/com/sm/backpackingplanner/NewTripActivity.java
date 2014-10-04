@@ -4,6 +4,7 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -14,7 +15,9 @@ public class NewTripActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_trip);
 		
+		//allows the app icon in the menu to become a button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+				
 	}
 
 	@Override

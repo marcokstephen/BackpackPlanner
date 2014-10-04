@@ -1,4 +1,4 @@
-package com.sm.backpackingplanner;
+package com.sm.backpackingplannerdata;
 
 import org.json.JSONArray;
 import org.json.JSONException;
