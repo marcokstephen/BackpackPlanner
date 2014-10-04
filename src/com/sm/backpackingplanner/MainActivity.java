@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	Context c;
+	public static final String INTENT_BUNDLE_ID = "com.sm.backpackingplanner.INTENT_BUNDLE_ID";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,20 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        String sampleJsonArray = "";
+        new Datastore(c);
+		JSONArray tripsJsonArray = Datastore.getEventList();
         ListView tripListView = (ListView)findViewById(R.id.tripListView);
-        tripListView.setAdapter(new TripListAdapter(this, sampleJsonArray));
+        tripListView.setAdapter(new TripListAdapter(this, tripsJsonArray));
         
+        tripListView.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+					long arg3) {
+				Intent tripItemList = new Intent(c, TripItemList.class);
+				tripItemList.putExtra(INTENT_BUNDLE_ID,position);
+				startActivity(tripItemList);
+			}
+        });
     }
 
     @Override
@@ -67,13 +80,9 @@ public class MainActivity extends Activity {
     	private LayoutInflater myLayoutInflater;
     	private JSONArray myJsonArray;
     	
-    	public TripListAdapter(Context ctxt, String jsonTripList){
+    	public TripListAdapter(Context ctxt, JSONArray jsonTripList){
     		myLayoutInflater = (LayoutInflater) ctxt.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    		try {
-    			myJsonArray = new JSONArray(jsonTripList);
-    		} catch (JSONException e){
-    			e.printStackTrace();
-    		}
+    		myJsonArray = jsonTripList;
     	}
     	
 		@Override
@@ -106,7 +115,7 @@ public class MainActivity extends Activity {
 				JSONObject myJsonObj = myJsonArray.getJSONObject(arg0);
 				String location = myJsonObj.getString("location");
 				String date = myJsonObj.getString("date");
-				String weather = myJsonObj.getString("weater");
+				String weather = myJsonObj.getString("weather");
 				
 				TextView locationTextView = (TextView)view.findViewById(R.id.location_text_view);
 				TextView weatherTextView = (TextView)view.findViewById(R.id.weather_summary_text_view);
