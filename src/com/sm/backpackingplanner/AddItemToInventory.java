@@ -11,6 +11,9 @@ public class AddItemToInventory extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_item_to_inventory);
+		
+		//allows the app icon in the menu to become a button
+				getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -25,9 +28,8 @@ public class AddItemToInventory extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (item.getItemId() == android.R.id.home){
+			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}

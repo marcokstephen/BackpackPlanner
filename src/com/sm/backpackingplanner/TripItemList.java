@@ -2,6 +2,8 @@ package com.sm.backpackingplanner;
 
 import org.json.JSONObject;
 
+import com.sm.backpackingplannerdata.DataStoreInventory;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +19,8 @@ public class TripItemList extends Activity {
 
 		Intent intent = getIntent();
 		int idValue = intent.getIntExtra(MainActivity.INTENT_BUNDLE_ID, 0);
-		new Datastore(this);
-		JSONObject eventJsonObject = Datastore.getEventById(idValue);
+		new DataStoreInventory(this);
+		JSONObject eventJsonObject = DataStoreInventory.getEventById(idValue);
 		
 		setContentView(R.layout.activity_trip_item_list);
 		TextView testOutput = (TextView)findViewById(R.id.test_output);
