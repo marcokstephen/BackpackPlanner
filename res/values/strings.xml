@@ -13,10 +13,7 @@
     <string name="search_hint">Search nearest city...</string>
     <string name="title_activity_trip_item_list">Packing List</string>
     <string name="title_activity_map_test">MapTest</string>
-<<<<<<< HEAD
-
-=======
     <string name="map_action">Map</string>
->>>>>>> FETCH_HEAD
+
 
 </resources>
