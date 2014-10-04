@@ -2,11 +2,8 @@ package com.sm.backpackingplanner;
 
 import org.json.JSONObject;
 
-<<<<<<< HEAD
 import com.sm.backpackingplannerdata.DataStoreInventory;
-=======
 import com.sm.backpackingplannerdata.Datastore;
->>>>>>> FETCH_HEAD
 
 import android.app.Activity;
 import android.content.Intent;
