@@ -70,9 +70,13 @@ public class MainActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_new_list) {
-        	Intent intent = new Intent(this, MapTest.class);
+        	Intent intent = new Intent(this, NewTripActivity.class);
         	startActivity(intent);
         	return true;
+        }
+        else if (id == R.id.map_action){
+        	Intent intent = new Intent(this, MapTest.class);
+        	startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
