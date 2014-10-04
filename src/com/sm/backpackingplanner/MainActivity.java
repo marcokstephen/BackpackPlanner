@@ -74,6 +74,10 @@ public class MainActivity extends Activity {
         	startActivity(intent);
         	return true;
         }
+        else if (id == R.id.map_action){
+        	Intent intent = new Intent(this, MapTest.class);
+        	startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
     
