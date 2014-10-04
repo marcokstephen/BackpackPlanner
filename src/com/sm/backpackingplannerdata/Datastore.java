@@ -34,7 +34,7 @@ public class Datastore {
 	public static void saveEventList(JSONObject obj){
 		JSONArray newArray = new JSONArray();
 		try {
-			newArray = new JSONArray(prefs.getString(GET_EVENT_LIST, ""));
+			newArray = new JSONArray(prefs.getString(GET_EVENT_LIST, "[{'location':'sample','weather':'normal','date':'today'}]"));
 		} catch (JSONException e){
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class Datastore {
 	public static JSONObject getEventById(int id){
 		JSONArray newArray = new JSONArray();
 		try {
-			newArray = new JSONArray(prefs.getString(GET_EVENT_LIST,""));
+			newArray = new JSONArray(prefs.getString(GET_EVENT_LIST,"[{'location':'sample','weather':'normal','date':'today'}]"));
 		} catch (JSONException e){
 			e.printStackTrace();
 		}
