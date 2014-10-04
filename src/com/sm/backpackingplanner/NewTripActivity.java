@@ -22,7 +22,7 @@ public class NewTripActivity extends FragmentActivity implements OnItemSelectedL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_trip);
+		setContentView(R.layout.activity_new_trip_v2);
 		
 		//allows the app icon in the menu to become a button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
