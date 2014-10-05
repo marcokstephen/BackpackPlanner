@@ -1,10 +1,9 @@
+package com.sm.backpackingplannerdata;
 
 
 import java.io.IOException;
-
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -15,7 +14,7 @@ import android.util.Xml;
 public class AmazonParser {
 	private static final String ns = null;
 
-public List parse(InputStream in) throws XmlPullParserException, IOException {
+public Item parse(InputStream in) throws XmlPullParserException, IOException {
     try {
         XmlPullParser parser = Xml.newPullParser();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
@@ -27,8 +26,9 @@ public List parse(InputStream in) throws XmlPullParserException, IOException {
     }
 }
 
-private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-    List entries = new ArrayList();
+private Item readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
+//    List inventoryItem = new ArrayList();
+		Item inventoryItem = null;
 
     parser.require(XmlPullParser.START_TAG, ns, "feed");
     while (parser.next() != XmlPullParser.END_TAG) {
@@ -38,27 +38,15 @@ private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOExc
         String name = parser.getName();
         // Starts by looking for the Item tag
         if (name.equals("Item")) {
-            entries.add(readItem(parser));
+            inventoryItem= readItem(parser);
         } else {
           skip(parser);
         }
     }  
-    return entries;
+    return inventoryItem;
 }
 
-public static class Item {
-    public final String Brand;
-    public final String Feature;
-    public final String Title;
-    public final String ASIN;
 
-    private Item(String Brand, String Feature, String Title, String ASIN) {
-        this.Brand = Brand;
-        this.Feature = Feature;
-        this.Title = Title;
-        this.ASIN = ASIN;
-    }
-}
   
 // Parses the contents of an Item. If it encounters a title, summary, or link tag, hands them off
 // to their respective "read" methods for processing. Otherwise, skips the tag.
@@ -68,6 +56,7 @@ private Item readItem(XmlPullParser parser) throws XmlPullParserException, IOExc
     String Feature = null;
     String Title = null;
     String ASIN = null; 
+    Item item = null;
     while (parser.next() != XmlPullParser.END_TAG) {
         if (parser.getEventType() != XmlPullParser.START_TAG) {
             continue;
@@ -84,8 +73,11 @@ private Item readItem(XmlPullParser parser) throws XmlPullParserException, IOExc
         } else {
          skip(parser);
         }
+        Item item2 = new Item(Brand, Feature, Title, ASIN);
+        return item2;
+        
     }
-    return new Item(Brand, Feature, Title, ASIN);
+    return item;
 }
 
 // Processes title tags in the feed.
@@ -153,6 +145,9 @@ private void skip(XmlPullParser parser) throws XmlPullParserException, IOExcepti
         }
     }
  }
+
+
+
   
 }
 

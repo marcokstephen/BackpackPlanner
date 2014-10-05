@@ -8,9 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sm.backpackingplanner.AddItemToInventory" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/searchView1"
+        android:hint="Name of Gear"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="115dp" >
+    </EditText>
+
+    <Button
+        android:id="@+id/search_item"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/search_item"
+        android:onClick="CallAmazon" />
 
 </RelativeLayout>

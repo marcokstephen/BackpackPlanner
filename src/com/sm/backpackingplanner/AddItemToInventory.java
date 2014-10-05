@@ -1,17 +1,31 @@
 package com.sm.backpackingplanner;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.sm.backpackingplannerdata.AmazonParser;
 import com.sm.backpackingplannerdata.ItemLookup;
 import com.sm.backpackingplannerdata.ServiceHandler;
 
 public class AddItemToInventory extends Activity {
 
 	String someKeywords = null;
+	String outputString= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +34,12 @@ public class AddItemToInventory extends Activity {
 
 		// allows the app icon in the menu to become a button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	public void CallAmazon(View v){
+		EditText amazonView = (EditText) findViewById(R.id.searchView1);
+		outputString= amazonView.getText().toString();
+		new CallAPI().execute(null, null, null);
 	}
 
 	@Override
@@ -41,6 +61,9 @@ public class AddItemToInventory extends Activity {
 	}
 
 	public class CallAPI extends AsyncTask<Void,Void,Void>{
+		
+		
+		
         @Override
         protected void onPreExecute(){
                 super.onPreExecute();
@@ -52,7 +75,8 @@ public class AddItemToInventory extends Activity {
                 //make your network call here
                 String url = ItemLookup.makeCall(someKeywords);
                 ServiceHandler sh = new ServiceHandler();
-                String outputString = sh.makeServiceCall(url, ServiceHandler.GET);
+                outputString = sh.makeServiceCall(url, ServiceHandler.GET);
+                Log.d("xml", outputString); ///for testing
                 return null;
         }
 
@@ -60,6 +84,18 @@ public class AddItemToInventory extends Activity {
         protected void onPostExecute(Void result){
                 super.onPostExecute(result);
                 //process your data here
+                Toast.makeText(getBaseContext(), outputString, Toast.LENGTH_LONG).show();
+                InputStream in = new ByteArrayInputStream(outputString.getBytes(StandardCharsets.UTF_8));
+                AmazonParser parser = null;
+                try {
+					parser.parse(in);
+				} catch (XmlPullParserException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         }
 }
 }

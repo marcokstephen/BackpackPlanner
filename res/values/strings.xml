@@ -20,5 +20,6 @@
         <item>Santa Barbara, CA</item>
         <item>Yosemite Valley</item>
     </string-array>
+    <string name="search_item">Search for Item</string>
 
 </resources>
