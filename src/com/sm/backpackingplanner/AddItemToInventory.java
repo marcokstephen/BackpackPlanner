@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sm.backpackingplannerdata.AmazonParser;
+import com.sm.backpackingplannerdata.DataStoreInventory;
 import com.sm.backpackingplannerdata.ItemLookup;
 import com.sm.backpackingplannerdata.ServiceHandler;
 
@@ -40,6 +42,9 @@ public class AddItemToInventory extends Activity {
 		EditText amazonView = (EditText) findViewById(R.id.searchView1);
 		outputString= amazonView.getText().toString();
 		new CallAPI().execute(null, null, null);
+		
+		Intent intent = new Intent(this, TripItemList.class);
+		startActivity(intent);	
 	}
 
 	@Override
@@ -59,7 +64,7 @@ public class AddItemToInventory extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+// second class ---- needs to be separated -- but not today!! Hackathon!!!!
 	public class CallAPI extends AsyncTask<Void,Void,Void>{
 		
 		

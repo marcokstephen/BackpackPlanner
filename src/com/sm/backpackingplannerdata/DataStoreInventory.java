@@ -1,61 +1,60 @@
 package com.sm.backpackingplannerdata;
 
-	import org.json.JSONArray;
-	import org.json.JSONException;
-	import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-	import android.content.Context;
-	import android.content.SharedPreferences;
-	import android.preference.PreferenceManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 
+	
 	//this class is used for storing and calling data from the SharedPreferences
 	public class DataStoreInventory {
 		
-		static SharedPreferences prefs;
-		private static final String GET_INVENTORY_LIST = "com.sm.backpackingplanner.GET_INVENTORY_LIST";
+		private static final String PREFKEY = "inventory";
+		private SharedPreferences itemPrefs;
 		
-		public DataStoreInventory(Context c){
-			prefs = PreferenceManager.getDefaultSharedPreferences(c);
+		public DataStoreInventory(Context context){
+			itemPrefs = context.getSharedPreferences(PREFKEY, Context.MODE_PRIVATE);	
 		}
 		
-		//The following three functions are used for accessing data
-		//about the upcoming trips that are planned
-		public static JSONArray getInventoryList(){
-			JSONArray newArray = new JSONArray();
-			String jsonArrayAsString = prefs.getString(GET_INVENTORY_LIST, "[{'location':'sample','weather':'normal','date':'today'}]"); //needs updating
-			try {
-				newArray = new JSONArray(jsonArrayAsString);
-			} catch (JSONException e){
-				e.printStackTrace();
+		public List<Item> findAll(){
+			
+			Map<String, ?> itemsMap = itemPrefs.getAll();
+			
+			
+			//sorts by amazon ASINS
+			SortedSet<String> keys = new TreeSet<String>(itemsMap.keySet());
+			
+			List<Item> inventory = new ArrayList<Item>();
+			for (String key: keys) {
+				Item item = new Item();
+				item.setKey(key);
+				item.setTitle((String) itemsMap.get(key));
+				inventory.add(item);	
 			}
-			return newArray;
+			return inventory;
+			
 		}
 		
-		public static void saveInventoryList(JSONObject obj){
-			JSONArray newArray = new JSONArray();
-			try {
-				newArray = new JSONArray(prefs.getString(GET_INVENTORY_LIST, ""));
-			} catch (JSONException e){
-				e.printStackTrace();
-			}
-			newArray.put(obj);
-			SharedPreferences.Editor editor = prefs.edit();
-			editor.putString(GET_INVENTORY_LIST, newArray.toString());
+		public boolean update(Item item){
+			
+			SharedPreferences.Editor editor = itemPrefs.edit();
+			editor.putString(item.getASIN(), item.getTitle());
 			editor.commit();
+			return true;
 		}
 		
-		public static JSONObject getEventById(int id){
-			JSONArray newArray = new JSONArray();
-			try {
-				newArray = new JSONArray(prefs.getString(GET_INVENTORY_LIST,""));
-			} catch (JSONException e){
-				e.printStackTrace();
-			}
-			try {
-				return newArray.getJSONObject(id);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			return null;
+		public boolean remove(Item item){
+			
+			if (itemPrefs.contains(item.getASIN())){
+			
+			SharedPreferences.Editor editor = itemPrefs.edit();
+			editor.remove(item.getASIN());
+			editor.commit();
+			}	
+			return true;
 		}
 	}
