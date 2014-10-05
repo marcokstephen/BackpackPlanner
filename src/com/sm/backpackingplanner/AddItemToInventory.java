@@ -73,10 +73,17 @@ public class AddItemToInventory extends Activity {
         @Override
         protected Void doInBackground(Void... arg0) {
                 //make your network call here
-                String url = ItemLookup.makeCall(someKeywords);
+                try{
+        		String url = ItemLookup.makeCall(someKeywords);
+                System.out.print(url);
+               
+                Log.d("url", url); ///for testing
                 ServiceHandler sh = new ServiceHandler();
                 outputString = sh.makeServiceCall(url, ServiceHandler.GET);
                 Log.d("xml", outputString); ///for testing
+                } catch (Exception e){
+                	e.printStackTrace();
+                }
                 return null;
         }
 
@@ -86,7 +93,7 @@ public class AddItemToInventory extends Activity {
                 //process your data here
                 Toast.makeText(getBaseContext(), outputString, Toast.LENGTH_LONG).show();
                 InputStream in = new ByteArrayInputStream(outputString.getBytes(StandardCharsets.UTF_8));
-                AmazonParser parser = null;
+                AmazonParser parser = new AmazonParser();
                 try {
 					parser.parse(in);
 				} catch (XmlPullParserException e) {

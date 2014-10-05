@@ -104,9 +104,9 @@ public class ItemLookup {
         requestUrl = helper.sign(params);
         System.out.println("Signed Request is \"" + requestUrl + "\"");
 
-//        title = fetchTitle(requestUrl);
-//        System.out.println("Signed Title is \"" + title + "\"");
-//        System.out.println();
+//		String title = fetchTitle(requestUrl);
+//		System.out.println("Signed Title is \"" + title + "\"");
+//		System.out.println();
 
         /* Here is an example with string form, where the requests parameters have already been concatenated
          * into a query string. */
@@ -122,23 +122,23 @@ public class ItemLookup {
         return requestUrl;
 //
  }
-	//
-	// /*
-	// * Utility function to fetch the response from the service and extract the
-	// * title from the XML.
-	// */
-	// private static String fetchTitle(String requestUrl) {
-	// String title = null;
-	// try {
-	// DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-	// DocumentBuilder db = dbf.newDocumentBuilder();
-	// Document doc = db.parse(requestUrl);
-	// Node titleNode = doc.getElementsByTagName("Title").item(0);
-	// title = titleNode.getTextContent();
-	// } catch (Exception e) {
-	// throw new RuntimeException(e);
-	// }
-	// return title;
-	// }
+	
+	 /*
+	 * Utility function to fetch the response from the service and extract the
+	 * title from the XML.
+	 */
+//	 private static String fetchTitle(String requestUrl) {
+//	 String title = null;
+//	 try {
+//	 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//	 DocumentBuilder db = dbf.newDocumentBuilder();
+//	 Document doc = db.parse(requestUrl);
+//	 Node titleNode = doc.getElementsByTagName("Title").item(0);
+//	 title = titleNode.getTextContent();
+//	 } catch (Exception e) {
+//	 throw new RuntimeException(e);
+//	 }
+//	 return title;
+//	 }
 
 }
