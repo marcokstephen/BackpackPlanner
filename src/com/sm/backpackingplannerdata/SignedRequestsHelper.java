@@ -289,6 +289,7 @@ public class SignedRequestsHelper {
                 }
             }
         }
+        System.out.println("Finished Signed Requests.");
         return map;
     }
 }

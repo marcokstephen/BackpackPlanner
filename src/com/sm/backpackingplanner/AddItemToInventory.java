@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.sm.backpackingplannerdata.AmazonParser;
 import com.sm.backpackingplannerdata.DataStoreInventory;
+import com.sm.backpackingplannerdata.Item;
 import com.sm.backpackingplannerdata.ItemLookup;
 import com.sm.backpackingplannerdata.ServiceHandler;
 
@@ -43,7 +44,7 @@ public class AddItemToInventory extends Activity {
 		outputString= amazonView.getText().toString();
 		new CallAPI().execute(null, null, null);
 		
-		Intent intent = new Intent(this, TripItemList.class);
+		Intent intent = new Intent(this, TripItemList.class).putExtra("outputStream", outputString);
 		startActivity(intent);	
 	}
 
@@ -97,17 +98,7 @@ public class AddItemToInventory extends Activity {
                 super.onPostExecute(result);
                 //process your data here
                 Toast.makeText(getBaseContext(), outputString, Toast.LENGTH_LONG).show();
-                InputStream in = new ByteArrayInputStream(outputString.getBytes(StandardCharsets.UTF_8));
-                AmazonParser parser = new AmazonParser();
-                try {
-					parser.parse(in);
-				} catch (XmlPullParserException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                
         }
 }
 }

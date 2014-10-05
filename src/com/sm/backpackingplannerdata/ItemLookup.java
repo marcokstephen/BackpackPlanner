@@ -100,7 +100,7 @@ public class ItemLookup {
         
         
         
-
+        System.out.println("Finished Signed adding params to map.");
         requestUrl = helper.sign(params);
         System.out.println("Signed Request is \"" + requestUrl + "\"");
 
