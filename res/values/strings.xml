@@ -14,11 +14,6 @@
     <string name="title_activity_trip_item_list">Packing List</string>
     <string name="title_activity_map_test">MapTest</string>
     <string name="map_action">Map</string>
-<<<<<<< HEAD
-
-=======
->>>>>>> FETCH_HEAD
-
     <string-array name="locations_array">
         <item>Lake Tahoe, CA</item>
         <item>Big Sur, CA</item>
