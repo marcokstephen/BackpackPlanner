@@ -73,8 +73,8 @@ public class SignedRequestsHelper {
     private static final String REQUEST_METHOD = "GET";
 
     private String endpoint = "webservices.amazon.com";
-    private String awsAccessKeyId = "AKIAI3HLH2VHCZLHJJOQ";
-    private String awsSecretKey = "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";
+    private String awsAccessKeyId = "###";
+    private String awsSecretKey = "###";
 
     private SecretKeySpec secretKeySpec = null;
     private Mac mac = null;
